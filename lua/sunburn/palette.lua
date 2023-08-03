@@ -9,7 +9,7 @@ local palette = {
     fg_1       = oklch(0.90, 0, 0),
 
     red        = oklch(0.71, 0.12, 27.2),
-    green      = oklch(0.76, 0.12, 151.2),
+    green      = oklch(0.71, 0.12, 151.2),
     yellow     = oklch(0.71, 0.12, 90.3),
     blue       = oklch(0.71, 0.12, 258),
     magenta    = oklch(0.71, 0.12, 332.8),
@@ -17,8 +17,8 @@ local palette = {
     orange     = oklch(0.71, 0.12, 50.7),
     violet     = oklch(0.71, 0.12, 294.3),
 
-    br_red     = oklch(0.78, 0.12, 27.2),
-    br_green   = oklch(0.78, 0.12, 152.2),
+    br_red     = oklch(0.77, 0.12, 27.2),
+    br_green   = oklch(0.77, 0.12, 152.2),
     br_yellow  = oklch(0.77, 0.12, 90.3),
     br_blue    = oklch(0.77, 0.12, 258),
     br_magenta = oklch(0.77, 0.12, 332.8),
