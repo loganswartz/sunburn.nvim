@@ -343,5 +343,3 @@ local theme = Colorscheme.define('sunburn', function()
 end)
 
 return theme
-
--- vi:nowrap:number

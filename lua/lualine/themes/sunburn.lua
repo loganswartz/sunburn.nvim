@@ -3,7 +3,7 @@ local palette = require("sunburn.palette")
 -- convert hsl to hex
 local colors = {}
 for k, v in pairs(palette) do
-    colors[k] = v:to_hex()
+    colors[k] = v:hex()
 end
 
 return {
