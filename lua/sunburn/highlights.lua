@@ -29,40 +29,40 @@ local theme = Colorscheme.define('sunburn', function()
     Directory { fg = palette.cyan }    -- directory names (and other special names in listings)
 
     Constant { fg = palette.cyan }     -- (preferred) any constant
-    String { fg = palette.green }      --   a string constant: "this is a string"
-    Character { fg = palette.magenta } --  a character constant: 'c', '\n'
-    Number { Constant }                --   a number constant: 234, 0xff
-    Boolean { Constant }               --  a boolean constant: TRUE, false
-    Float { Constant }                 --    a floating point constant: 2.3e10
+    String { fg = palette.green }      -- a string constant: "this is a string"
+    Character { fg = palette.magenta } -- a character constant: 'c', '\n'
+    Number { Constant }                -- a number constant: 234, 0xff
+    Boolean { Constant }               -- a boolean constant: TRUE, false
+    Float { Constant }                 -- a floating point constant: 2.3e10
 
     Identifier { fg = palette.blue }   -- (preferred) any variable name
     Function { Identifier }            -- function name (also: methods for classes)
 
     Statement { fg = palette.yellow }  -- (preferred) any statement
-    Conditional { Statement }          --  if, then, else, endif, switch, etc.
-    Repeat { Statement }               --   for, do, while, etc.
-    Label { Statement }                --    case, default, etc.
+    Conditional { Statement }          -- if, then, else, endif, switch, etc.
+    Repeat { Statement }               -- for, do, while, etc.
+    Label { Statement }                -- case, default, etc.
     Operator { Statement }             -- "sizeof", "+", "*", etc.
-    Keyword { Statement }              --  any other keyword
-    Exception { Statement }            --  try, catch, throw
+    Keyword { Statement }              -- any other keyword
+    Exception { Statement }            -- try, catch, throw
 
     PreProc { fg = palette.magenta }   -- (preferred) generic Preprocessor
-    Include { PreProc }                --  preprocessor #include
-    Define { PreProc }                 --   preprocessor #define
-    Macro { PreProc }                  --    same as Define
-    PreCondit { PreProc }              --  preprocessor #if, #else, #endif, etc.
+    Include { PreProc }                -- preprocessor #include
+    Define { PreProc }                 -- preprocessor #define
+    Macro { PreProc }                  -- same as Define
+    PreCondit { PreProc }              -- preprocessor #if, #else, #endif, etc.
 
     Type { fg = palette.violet }       -- (preferred) int, long, char, etc.
     StorageClass { Type }              -- static, register, volatile, etc.
-    Structure { Type }                 --  struct, union, enum, etc.
-    Typedef { Type }                   --  A typedef
+    Structure { Type }                 -- struct, union, enum, etc.
+    Typedef { Type }                   -- A typedef
 
     Special { fg = palette.orange }    -- (preferred) any special symbol
-    SpecialChar { Special }            --  special character in a constant
-    Tag { Special }                    --    you can use CTRL-] on this
-    Delimiter { Special }              --  character that needs attention
+    SpecialChar { Special }            -- special character in a constant
+    Tag { Special }                    -- you can use CTRL-] on this
+    Delimiter { Special }              -- character that needs attention
     SpecialComment { Special }         -- special things inside a comment
-    Debug { Special }                  --    debugging statements
+    Debug { Special }                  -- debugging statements
 
     -- ("Ignore", below, may be invisible...)
     -- Ignore             { }, -- (preferred) left blank, hidden  |hl-Ignore|

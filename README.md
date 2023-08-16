@@ -59,22 +59,44 @@ at the same brightness will be completely outside the sRGB space. This means
 that the value has to be clipped to the closest sRGB value, which then doesn't
 look like the same hue and/or brightness.
 
-To formulate the palette, I looked for a band of brightness values, where
-(nearly) every hue in that band could be displayed at the maximum and minimum
-brightness values of the band without *any* distortion. This immediately dropped
-the perceptible "saturation" quite a bit, but gave me a good baseline. Finding
-this band means that I can have the base colors use the minimum brightness value
-of the band, and have the bright variants of the colors use the brightness value
-of the band, hypothetically without any distortion of the perceived hue.
+The palette was chosen in 2 steps:
 
-Once I found a good band, I picked the most distinct hues based on the peaks and
-troughs of the chroma and hue graphs in the color picker, with some very minor
-manual adjustment for personal preference and better distinction in some colors
-that appear a bit close to each other. I'll probably tweak these values slightly
-in the future, as the green-yellow and orange-red pairs are still a little
-problematic.
+ 1. finding a chroma value and a range of acceptable lightness values
+ 2. finding hue values for each of the needed colors.
+
+The goal of finding a set of lightness and chroma values was to find values
+that would provide colors inside the sRGB gamut, no matter what hue was
+chosen, with an upper and lower range of lightness values. By doing this, I
+could define the normal colors using the lower bound lightness value, and
+then define the bright versions of those colors using the upper bound
+lightness value.
+
+Oklab has strong hue uniformity, so to pick hues, I should ideally be able
+to find colors that are the most relatively distint by picking equidistant
+hue values. Doing this means that all other values will arise from my
+starting value, and any starting value *should* produce a set of values that
+are perceptually distinct. That being said, if possible, I wanted to pick a
+starting value that gave me hues closest to what we typically think of as
+"the main colors".
+
+To do that, I picked a starting hue which, to my eye, was a "main color" and
+also encompassed the "smallest relative portion" of the hue range (ie.
+appears to take up the least space on the hue band). This appeared to be
+violet, so I settled on a starting value of violet = 295, based on nothing
+but my subjective taste. I need 8 total colors, so 360 / 8 = 45, meaning the
+final chosen hues should match this formula:
+
+```
+h = (45n + 295) % 360
+```
+
+Where `h` is the final hue value, and 0 <= `n` <= 7.
 
 ## Misc
+
+If you are using this and the colors don't look correct, make sure your terminal
+supports truecolor and the colors aren't being mangled by tmux or any other
+intermediaries, as that will throw off all the values.
 
 ### Lualine
 
