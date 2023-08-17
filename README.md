@@ -1,9 +1,11 @@
+![Summary banner](https://loganswartz.com/images/sunburn.nvim/banner.png)
+
 # sunburn.nvim
 
 A Neovim colorscheme emphasizing readability above all else.
 
-![Example of the
-colorscheme](https://loganswartz.com/images/sunburn.nvim/preview.png)
+![Sample screenshot of the
+colorscheme](https://loganswartz.com/images/sunburn.nvim/sample.png)
 
 ## Usage
 

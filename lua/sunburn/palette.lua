@@ -29,44 +29,81 @@ local oklch = require("polychrome").oklch
 --
 --   h = (45n + 295) % 360
 --
--- Where h is the final hue value, and 0 <= n <= 7.
+-- Where h is the final hue value, and 0 <= n <= 7. The function below handles
+-- calculating these values.
 
-local BASE_LIGHTNESS = 0.65
-local BR_LIGHTNESS_OFFSET = 0.126
-local BASE_CHROMA = 0.11
+local function get_intervals(start, count, max)
+    max = max or 360
 
--- alternatively, for a slightly brighter base set (but also less difference
--- between the base and bright colors):
---
--- local BASE_LIGHTNESS = 0.706
--- local BR_LIGHTNESS_OFFSET = 0.068
--- local BASE_CHROMA = 0.12
+    start = start % max
+    local size = max / count
 
--- difference between each hue is 45
-local BASE_HUES = {
-    red     = 25,
-    orange  = 70,
-    yellow  = 115,
-    green   = 160,
-    cyan    = 205,
-    blue    = 250,
-    violet  = 295,
-    magenta = 340,
-}
+    local values = {}
+    for n = 1, count, 1 do
+        local value = ((size * n) + start) % max
+        table.insert(values, value)
+    end
 
-local palette = {
-    bg_0  = oklch(0.21, 0, 0),
-    bg_1  = oklch(0.28, 0, 0),
-    bg_2  = oklch(0.35, 0, 0),
-    dim_0 = oklch(BASE_LIGHTNESS - BR_LIGHTNESS_OFFSET, 0, 0),
-    -- subjective adjustment for white
-    fg_0  = oklch(BASE_LIGHTNESS + (BR_LIGHTNESS_OFFSET / 3), 0, 0),
-    fg_1  = oklch(0.90, 0, 0),
-}
-
-for name, hue in pairs(BASE_HUES) do
-    palette[name] = oklch(BASE_LIGHTNESS, BASE_CHROMA, hue)
-    palette['br_' .. name] = oklch(BASE_LIGHTNESS + BR_LIGHTNESS_OFFSET, BASE_CHROMA, hue)
+    table.sort(values)
+    return values
 end
 
-return palette
+local LC = {
+    base = {
+        LIGHTNESS = 0.65,
+        LIGHTNESS_OFFSET = 0.126,
+        CHROMA = 0.11,
+    },
+    -- alternatively, for a slightly brighter base set (but also less difference
+    -- between the base and bright colors):
+    bright = {
+        LIGHTNESS = 0.706,
+        LIGHTNESS_OFFSET = 0.068,
+        CHROMA = 0.12,
+    },
+}
+
+---@param size 6|8|nil
+---@param bright boolean|nil
+local function generate(size, bright)
+    local start = size == 8 and 295 or 25
+    local hues = get_intervals(start, size)
+    local variant = bright and 'bright' or 'base'
+
+    local palette = {
+        bg_0  = oklch(0.21, 0, 0),
+        bg_1  = oklch(0.28, 0, 0),
+        bg_2  = oklch(0.35, 0, 0),
+        dim_0 = oklch(LC[variant].LIGHTNESS - LC[variant].LIGHTNESS_OFFSET, 0, 0),
+        -- subjective adjustment for white
+        fg_0  = oklch(LC[variant].LIGHTNESS + (LC[variant].LIGHTNESS_OFFSET / 3), 0, 0),
+        fg_1  = oklch(0.90, 0, 0),
+    }
+
+    local NAME_LOOKUP = {
+        'red',
+        'yellow',
+        'green',
+        'cyan',
+        'blue',
+        'magenta',
+    }
+    if size == 8 then
+        table.insert(NAME_LOOKUP, 2, 'orange')
+        table.insert(NAME_LOOKUP, 7, 'violet')
+    end
+
+    for idx, hue in ipairs(hues) do
+        local name = NAME_LOOKUP[idx]
+        palette[name] = oklch(LC[variant].LIGHTNESS, LC[variant].CHROMA, hue)
+        palette['br_' .. name] = oklch(LC[variant].LIGHTNESS + LC[variant].LIGHTNESS_OFFSET, LC[variant].CHROMA,
+            hue)
+    end
+
+    return palette
+end
+
+local size = vim.g.sunburn_palette_size or 8
+local bright = vim.g.sunburn_bright_variant == nil and false or vim.g.sunburn_bright_variant
+
+return generate(size, bright)
