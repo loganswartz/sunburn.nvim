@@ -3,15 +3,6 @@ local palette = require("sunburn.palette")
 
 ---@diagnostic disable: undefined-global
 local theme = Colorscheme.define('sunburn', function()
-    ---- GUI features --------------------------- {{{
-    Strikethrough { gui = "strikethrough" }
-    Underlined { gui = "underline" } -- (preferred) text that stands out, HTML links
-    Undercurl { gui = "undercurl" }
-    Reverse { gui = "reverse" }
-    Standout { gui = "standout" }
-    Bold { gui = "bold" }
-    Italic { gui = "italic" }
-    -- }}}
     ---- De Facto groups ------------------------ {{{
     -- These groups are not listed as default vim groups
     -- but they are defacto standard group names for syntax highlighting.
@@ -161,10 +152,10 @@ local theme = Colorscheme.define('sunburn', function()
     -- LspReferenceText                     { } -- used for highlighting "text" references
     -- LspReferenceRead                     { } -- used for highlighting "read" references
     -- LspReferenceWrite                    { } -- used for highlighting "write" references
-    DiagnosticUnderlineError { DiagnosticError, gui = Underlined.gui }
-    DiagnosticUnderlineWarn { DiagnosticWarn, gui = Underlined.gui }
-    DiagnosticUnderlineInfo { DiagnosticInfo, gui = Underlined.gui }
-    DiagnosticUnderlineHint { DiagnosticHint, gui = Underlined.gui }
+    DiagnosticUnderlineError { DiagnosticError, gui = Underline.gui }
+    DiagnosticUnderlineWarn { DiagnosticWarn, gui = Underline.gui }
+    DiagnosticUnderlineInfo { DiagnosticInfo, gui = Underline.gui }
+    DiagnosticUnderlineHint { DiagnosticHint, gui = Underline.gui }
     LspDiagnosticsVirtualTextError { LspDiagnosticsError }
     LspDiagnosticsVirtualTextWarning { LspDiagnosticsWarning }
     LspDiagnosticsVirtualTextInformation { LspDiagnosticsInformation }
@@ -267,7 +258,7 @@ local theme = Colorscheme.define('sunburn', function()
     _ "@text.strike" { Strikethrough } -- strikethrough text
     _ "@text.title" { Title }          -- text that is part of a title
     -- _ "@text.literal"          { } -- literal or verbatim text
-    _ "@text.uri" { Underlined }       -- URIs (e.g. hyperlinks)
+    _ "@text.uri" { Underline }       -- URIs (e.g. hyperlinks)
     -- _ "@text.math"             { } -- math environments (e.g. `$ ... $` in LaTeX)
     -- _ "@text.environment"      { } -- text environments of markup languages
     -- _ "@text.environment.name" { } -- text indicating the type of an environment
@@ -278,8 +269,8 @@ local theme = Colorscheme.define('sunburn', function()
     _ "@text.warning" { Todo, fg = DiagnosticWarn.fg } -- warning notes
     _ "@text.danger" { Todo, fg = DiagnosticError.fg } -- danger/error notes
 
-    _ "@text.diff.add" { diffAdded }                   -- diff mode: Added line
-    _ "@text.diff.delete" { diffRemoved }              -- diff mode: Deleted line
+    _ "@text.diff.add" { DiffAdd }                     -- diff mode: Added line
+    _ "@text.diff.delete" { DiffDelete }               -- diff mode: Deleted line
 
     -- }}}
     --- Tags {{{
@@ -329,9 +320,9 @@ local theme = Colorscheme.define('sunburn', function()
 
     -- }}}
     --- lewis6991/gitsigns.nvim {{{
-    GitSignsAdd { bg = Normal.bg, fg = DiffAdd.fg }
-    GitSignsChange { bg = Normal.bg, fg = DiffChange.fg }
-    GitSignsDelete { bg = Normal.bg, fg = DiffDelete.fg }
+    GitSignsAdd { DiffAdd }
+    GitSignsChange { DiffChange }
+    GitSignsDelete { DiffDelete }
 
     -- }}}
     --- tpope/vim-fugitive {{{
