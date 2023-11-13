@@ -11,7 +11,7 @@ local theme = Colorscheme.define('sunburn', function()
 
     Normal { bg = palette.bg_0, fg = palette.fg_0 }
     Comment { fg = palette.dim_0 }
-    NormalFloat { fg = Normal.fg }                    -- Normal text in floating windows.
+    NormalFloat { bg = palette.bg_1 }                 -- Normal text in floating windows.
     FloatBorder { fg = palette.dim_0 }                -- Border of floating windows
     Conceal { fg = palette.fg_1, bg = palette.dim_0 } -- placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor { Reverse }                                -- character under the cursor
@@ -83,7 +83,7 @@ local theme = Colorscheme.define('sunburn', function()
     -- VertSplit          { } -- the column separating vertically split windows
 
     Folded { bg = palette.bg_1, fg = palette.dim_0 }           -- line used for closed folds
-    ColorColumn { bg = palette.bg_1 }                          -- used for the columns set with 'colorcolumn'
+    ColorColumn { NormalFloat }                                -- used for the columns set with 'colorcolumn'
     FoldColumn { bg = palette.bg_1, fg = palette.fg_0 }        -- 'foldcolumn'
     SignColumn { bg = palette.bg_0 }                           -- column where |signs| are displayed
     CursorColumn { bg = palette.bg_1 }                         -- used for the columns set with 'cursorcolumn'
@@ -258,7 +258,7 @@ local theme = Colorscheme.define('sunburn', function()
     _ "@text.strike" { Strikethrough } -- strikethrough text
     _ "@text.title" { Title }          -- text that is part of a title
     -- _ "@text.literal"          { } -- literal or verbatim text
-    _ "@text.uri" { Underline }       -- URIs (e.g. hyperlinks)
+    _ "@text.uri" { Underline }        -- URIs (e.g. hyperlinks)
     -- _ "@text.math"             { } -- math environments (e.g. `$ ... $` in LaTeX)
     -- _ "@text.environment"      { } -- text environments of markup languages
     -- _ "@text.environment.name" { } -- text indicating the type of an environment
@@ -316,7 +316,7 @@ local theme = Colorscheme.define('sunburn', function()
 
     -- }}}
     --- lukas-reineke/indent-blankline.nvim {{{
-    IndentBlanklineContextChar { fg = palette.blue }
+    IblScope { fg = palette.violet }
 
     -- }}}
     --- lewis6991/gitsigns.nvim {{{
