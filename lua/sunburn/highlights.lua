@@ -99,9 +99,9 @@ local theme = Colorscheme.define('sunburn', function()
     NonText { Comment } -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
     -- EndOfBuffer        { } -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
     -- NormalNC           { } -- normal text in non-current windows
-    Pmenu { bg = palette.bg_1 }                           -- Popup menu: normal item.
-    PmenuSel { bg = palette.bg_2 }                        -- Popup menu: selected item.
-    PmenuSbar { bg = palette.bg_2 }                       -- Popup menu: scrollbar.
+    Pmenu { bg = palette.bg_2 }                           -- Popup menu: normal item.
+    PmenuSel { bg = palette.dim_0 }                       -- Popup menu: selected item.
+    PmenuSbar { bg = palette.dim_0 }                      -- Popup menu: scrollbar.
     PmenuThumb { bg = palette.fg_0 }                      -- Popup menu: Thumb of the scrollbar.
     Question { Normal }                                   -- |hit-enter| prompt and yes/no questions
     SpecialKey { fg = palette.br_cyan, gui = Italic.gui } -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
@@ -239,7 +239,7 @@ local theme = Colorscheme.define('sunburn', function()
 
     -- }}}
     --- Identifiers {{{
-    -- _ "@variable"              { } -- various variable names
+    _ "@variable" { fg = palette.fg_0 }            -- various variable names
     _ "@variable.builtin" { fg = palette.magenta } -- built-in variable names (e.g. `this`)
 
     -- _ "@constant"              { } -- constant identifiers
