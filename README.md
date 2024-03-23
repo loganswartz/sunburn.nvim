@@ -13,12 +13,16 @@ This colorscheme uses my own experimental Neovim colorscheme framework,
 [polychrome.nvim](https://github.com/loganswartz/polychrome.nvim), so you'll
 need to install that in addition to this plugin.
 
-Using packer.nvim:
+Using lazy.nvim:
 
 ```lua
-use {
+{
     'loganswartz/sunburn.nvim',
-    requires = { 'loganswartz/polychrome.nvim' },
+    dependencies = { 'loganswartz/polychrome.nvim' },
+    -- you could do this, or use the standard vimscript `colorscheme sunburn`
+    config = function()
+        vim.cmd.colorscheme 'sunburn'
+    end,
 }
 ```
 
