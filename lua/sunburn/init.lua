@@ -1,1 +1,1 @@
-return require("sunburn.highlights")
+return require("sunburn.theme")

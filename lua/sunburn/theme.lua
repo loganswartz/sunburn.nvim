@@ -11,8 +11,8 @@ local theme = Colorscheme.define('sunburn', function()
 
     Normal { bg = palette.bg_0, fg = palette.fg_0 }
     Comment { fg = palette.dim_0 }
-    NormalFloat { bg = palette.bg_1 }                 -- Normal text in floating windows.
-    FloatBorder { fg = palette.dim_0 }                -- Border of floating windows
+    NormalFloat { bg = palette.bg_0 }                 -- Normal text in floating windows.
+    FloatBorder { bg = palette.bg_0 }                 -- Border of floating windows
     Conceal { fg = palette.fg_1, bg = palette.dim_0 } -- placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor { Reverse }                                -- character under the cursor
     -- lCursor            { } -- the character under the cursor when |language-mapping| is used (see 'guicursor')
@@ -64,7 +64,7 @@ local theme = Colorscheme.define('sunburn', function()
 
     -- Git
     diffFile { fg = palette.fg_1, Bold }
-    diffIndexLine { Identifier, gui = Italic.gui }
+    diffIndexLine { Identifier, Italic }
     diffAdded { fg = palette.green }       -- diff mode: Added line |diff.txt|
     DiffAdd { diffAdded }
     diffChanged { fg = palette.yellow }    -- diff mode: Changed line |diff.txt|
@@ -99,12 +99,12 @@ local theme = Colorscheme.define('sunburn', function()
     NonText { Comment } -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
     -- EndOfBuffer        { } -- filler lines (~) after the end of the buffer.  By default, this is highlighted like |hl-NonText|.
     -- NormalNC           { } -- normal text in non-current windows
-    Pmenu { bg = palette.bg_2 }                           -- Popup menu: normal item.
-    PmenuSel { bg = palette.dim_0 }                       -- Popup menu: selected item.
-    PmenuSbar { bg = palette.dim_0 }                      -- Popup menu: scrollbar.
-    PmenuThumb { bg = palette.fg_0 }                      -- Popup menu: Thumb of the scrollbar.
-    Question { Normal }                                   -- |hit-enter| prompt and yes/no questions
-    SpecialKey { fg = palette.br_cyan, gui = Italic.gui } -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
+    Pmenu { bg = palette.bg_1 }                 -- Popup menu: normal item.
+    PmenuSel { bg = palette.bg_2 }              -- Popup menu: selected item.
+    PmenuSbar { bg = palette.bg_2 }             -- Popup menu: scrollbar.
+    PmenuThumb { bg = palette.dim_0 }           -- Popup menu: Thumb of the scrollbar.
+    Question { fg = palette.br_violet }         -- |hit-enter| prompt and yes/no questions
+    SpecialKey { fg = palette.br_cyan, Italic } -- Unprintable characters: text displayed differently from what it really is.  But not 'listchars' whitespace. |hl-Whitespace|
     -- SpellBad           { } -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
     -- SpellCap           { } -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     -- SpellLocal         { } -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
@@ -152,10 +152,10 @@ local theme = Colorscheme.define('sunburn', function()
     -- LspReferenceText                     { } -- used for highlighting "text" references
     -- LspReferenceRead                     { } -- used for highlighting "read" references
     -- LspReferenceWrite                    { } -- used for highlighting "write" references
-    DiagnosticUnderlineError { DiagnosticError, gui = Underline.gui }
-    DiagnosticUnderlineWarn { DiagnosticWarn, gui = Underline.gui }
-    DiagnosticUnderlineInfo { DiagnosticInfo, gui = Underline.gui }
-    DiagnosticUnderlineHint { DiagnosticHint, gui = Underline.gui }
+    DiagnosticUnderlineError { DiagnosticError, Underline }
+    DiagnosticUnderlineWarn { DiagnosticWarn, Underline }
+    DiagnosticUnderlineInfo { DiagnosticInfo, Underline }
+    DiagnosticUnderlineHint { DiagnosticHint, Underline }
     LspDiagnosticsVirtualTextError { LspDiagnosticsError }
     LspDiagnosticsVirtualTextWarning { LspDiagnosticsWarning }
     LspDiagnosticsVirtualTextInformation { LspDiagnosticsInformation }
@@ -173,10 +173,10 @@ local theme = Colorscheme.define('sunburn', function()
     --- Misc {{{
     -- _ "@comment"               { } -- line and block comments
     _ "@error" { Error } -- syntax/parser errors
-    -- _ "@none"                  { } -- completely disable the highlight
-    -- _ "@preproc"               { } -- various preprocessor directives & shebangs
-    -- _ "@define"                { } -- preprocessor definition directives
-    -- _ "@operator"              { } -- symbolic operators (e.g. `+` / `*`)
+    -- _ "@none"                     { } -- completely disable the highlight
+    -- _ "@keyword.directive"        { } -- various preprocessor directives & shebangs
+    -- _ "@keyword.directive.define" { } -- preprocessor definition directives
+    -- _ "@operator"                 { } -- symbolic operators (e.g. `+` / `*`)
 
     -- }}}
     --- Punctuation {{{
@@ -187,7 +187,7 @@ local theme = Colorscheme.define('sunburn', function()
     -- }}}
     --- Literals {{{
     -- _ "@string"                { } -- string literals
-    -- _ "@string.regex"          { } -- regular expressions
+    -- _ "@string.regexp"         { } -- regular expressions
     -- _ "@string.escape"         { } -- escape sequences
     -- _ "@string.special"        { } -- other special strings (e.g. dates)
 
@@ -196,7 +196,7 @@ local theme = Colorscheme.define('sunburn', function()
 
     -- _ "@boolean"               { } -- boolean literals
     -- _ "@number"                { } -- numeric literals
-    -- _ "@float"                 { } -- floating-point number literals
+    -- _ "@number.float"          { } -- floating-point number literals
 
     -- }}}
     --- Functions {{{
@@ -205,11 +205,11 @@ local theme = Colorscheme.define('sunburn', function()
     -- _ "@function.call"         { } -- function calls
     -- _ "@function.macro"        { } -- preprocessor macros
 
-    -- _ "@method"                { } -- method definitions
-    -- _ "@method.call"           { } -- method calls
+    -- _ "@function.method"       { } -- method definitions
+    -- _ "@function.method.call"  { } -- method calls
 
     _ "@constructor" { Type } -- constructor calls and definitions
-    -- _ "@parameter"             { } -- parameters of a function
+    -- _ "@variable.parameter"    { } -- parameters of a function
 
     -- }}}
     --- Keywords {{{
@@ -218,12 +218,12 @@ local theme = Colorscheme.define('sunburn', function()
     -- _ "@keyword.operator"      { } -- operators that are English words (e.g. `and` / `or`)
     -- _ "@keyword.return"        { } -- keywords like `return` and `yield`
 
-    -- _ "@conditional"           { } -- keywords related to conditionals (e.g. `if` / `else`)
-    -- _ "@repeat"                { } -- keywords related to loops (e.g. `for` / `while`)
-    -- _ "@debug"                 { } -- keywords related to debugging
+    -- _ "@keyword.conditional"   { } -- keywords related to conditionals (e.g. `if` / `else`)
+    -- _ "@keyword.repeat"        { } -- keywords related to loops (e.g. `for` / `while`)
+    -- _ "@keyword.debug"         { } -- keywords related to debugging
     -- _ "@label"                 { } -- GOTO and other labels (e.g. `label:` in C)
-    -- _ "@include"               { } -- keywords for including modules (e.g. `import` / `from` in Python)
-    -- _ "@exception"             { } -- keywords related to exceptions (e.g. `throw` / `catch`)
+    -- _ "@keyword.include"       { } -- keywords for including modules (e.g. `import` / `from` in Python)
+    -- _ "@keyword.exception"     { } -- keywords related to exceptions (e.g. `throw` / `catch`)
 
     -- }}}
     --- Types {{{
@@ -232,10 +232,10 @@ local theme = Colorscheme.define('sunburn', function()
     -- _ "@type.definition"       { } -- type definitions (e.g. `typedef` in C)
     -- _ "@type.qualifier"        { } -- type qualifiers (e.g. `const`)
 
-    -- _ "@storageclass"          { } -- visibility/life-time/etc. modifiers (e.g. `static`)
+    -- _ "@keyword.storage"       { } -- visibility/life-time/etc. modifiers (e.g. `static`)
     -- _ "@attribute"             { } -- attribute annotations (e.g. Python decorators)
-    _ "@field" { fg = Normal.fg } -- object and struct fields
-    _ "@property" { _ "@field" }  -- similar to `@field`
+    _ "@variable.member" { fg = Normal.fg } -- object and struct fields
+    _ "@property" { _ "@variable.member" }  -- similar to `@field`
 
     -- }}}
     --- Identifiers {{{
@@ -246,31 +246,46 @@ local theme = Colorscheme.define('sunburn', function()
     -- _ "@constant.builtin"      { } -- built-in constant values
     -- _ "@constant.macro"        { } -- constants defined by the preprocessor")
 
-    -- _ "@namespace"             { } -- modules or namespaces
-    -- _ "@symbol"                { } -- symbols or atoms
+    -- _ "@module"                { } -- modules or namespaces
 
     -- }}}
     --- Text {{{
-    -- _ "@text"                  { } -- non-structured text
-    _ "@text.strong" { Bold }          -- bold text
-    _ "@text.emphasis" { Bold }        -- text with emphasis
-    -- _ "@text.underline"        { } -- underlined text
-    _ "@text.strike" { Strikethrough } -- strikethrough text
-    _ "@text.title" { Title }          -- text that is part of a title
-    -- _ "@text.literal"          { } -- literal or verbatim text
-    _ "@text.uri" { Underline }        -- URIs (e.g. hyperlinks)
-    -- _ "@text.math"             { } -- math environments (e.g. `$ ... $` in LaTeX)
-    -- _ "@text.environment"      { } -- text environments of markup languages
-    -- _ "@text.environment.name" { } -- text indicating the type of an environment
-    -- _ "@text.reference"        { } -- text references, footnotes, citations, etc.
+    -- _ "@markup"                { } -- non-structured text
+    _ "@markup.strong" { Bold }                 -- bold text
+    _ "@markup.italic" { Italic }               -- text with emphasis
+    _ "@markup.underline" { Underline }         -- underlined text
+    _ "@markup.strikethrough" { Strikethrough } -- strikethrough text
+    _ "@markup.heading" { Title }               -- text that is part of a title
+    -- _ "@markup.raw"            { } -- literal or verbatim text
+    -- _ "@markup.quote"          { } -- block quotes
+    -- _ "@markup.math"           { } -- math environments (e.g. `$ ... $` in LaTeX)
+    -- _ "@markup.environment"    { } -- text environments of markup languages
+    -- _ "@markup.environment.name" { } -- text indicating the type of an environment
+    -- _ "@markup.link"           { } -- text references, footnotes, citations, etc.
+    _ "@markup.link.label" { Bold }    -- link, reference descriptions
+    _ "@markup.link.url" { Underline } -- URL-style links
+    _ "@markup.list" { Statement }     -- list markers
+    -- _ "@markup.list.unnumbered" {  }                -- unnumbered lists
+    -- _ "@markup.list.numbered" {  }                  -- numbered lists
+    _ "@markup.list.checked" { fg = palette.green } -- checked todo-style list markers
+    _ "@markup.list.unchecked" { fg = palette.red } -- unchecked todo-style list markers
 
-    _ "@text.todo" { Todo, fg = DiagnosticHint.fg }    -- todo notes
-    _ "@text.note" { Todo, fg = DiagnosticInfo.fg }    -- info notes
-    _ "@text.warning" { Todo, fg = DiagnosticWarn.fg } -- warning notes
-    _ "@text.danger" { Todo, fg = DiagnosticError.fg } -- danger/error notes
+    -- _ "@string.special.symbol" { } -- symbols or atoms
+    -- _ "@string.special.url" { }    -- URIs (e.g. hyperlinks)
 
-    _ "@text.diff.add" { DiffAdd }                     -- diff mode: Added line
-    _ "@text.diff.delete" { DiffDelete }               -- diff mode: Deleted line
+    _ "@comment.todo" { Todo, fg = DiagnosticHint.fg }    -- todo notes
+    _ "@comment.note" { Todo, fg = DiagnosticInfo.fg }    -- info notes
+    _ "@comment.warning" { Todo, fg = DiagnosticWarn.fg } -- warning notes
+    _ "@comment.error" { Todo, fg = DiagnosticError.fg }  -- danger/error notes
+
+    _ "@diff.plus" { DiffAdd }                            -- Added line
+    _ "@diff.plus.gutter" { _ "@diff.plus" }              -- Added gutter indicator
+    _ "@diff.minus" { DiffDelete }                        -- Deleted line
+    _ "@diff.minus.gutter" { _ "@diff.minus" }            -- Deleted gutter indicator
+    _ "@diff.delta" { DiffChange }                        -- Changed line
+    -- _ "@diff.delta.moved" {  }                            -- Moved line
+    -- _ "@diff.delta.conflict" {  }                         -- line with conflicts
+    _ "@diff.delta.gutter" { _ "@diff.delta" } -- Changed gutter indicator
 
     -- }}}
     --- Tags {{{
@@ -284,7 +299,7 @@ local theme = Colorscheme.define('sunburn', function()
     --- hrsh7th/nvim-cmp {{{
     CmpItemMenu { Type }
 
-    CmpItemAbbrDeprecated { gui = Strikethrough.gui }
+    CmpItemAbbrDeprecated { Strikethrough }
     CmpItemAbbrMatch { Identifier }
     CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch }
 
@@ -320,9 +335,9 @@ local theme = Colorscheme.define('sunburn', function()
 
     -- }}}
     --- lewis6991/gitsigns.nvim {{{
-    GitSignsAdd { DiffAdd }
-    GitSignsChange { DiffChange }
-    GitSignsDelete { DiffDelete }
+    GitSignsAdd { _ "@diff.plus.gutter" }
+    GitSignsChange { _ "@diff.delta.gutter" }
+    GitSignsDelete { _ "@diff.minus.gutter" }
 
     -- }}}
     --- tpope/vim-fugitive {{{
