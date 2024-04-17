@@ -272,6 +272,7 @@ local theme = Colorscheme.define('sunburn', function()
 
     -- _ "@string.special.symbol" { } -- symbols or atoms
     -- _ "@string.special.url" { }    -- URIs (e.g. hyperlinks)
+    _ "@string.documentation" { Comment }                 -- documentation strings
 
     _ "@comment.todo" { Todo, fg = DiagnosticHint.fg }    -- todo notes
     _ "@comment.note" { Todo, fg = DiagnosticInfo.fg }    -- info notes
@@ -343,6 +344,10 @@ local theme = Colorscheme.define('sunburn', function()
     --- tpope/vim-fugitive {{{
     gitcommitSummary { Identifier }
     gitcommitOverflow { DiagnosticWarn }
+
+    -- }}}
+    --- folke/lazy.nvim {{{
+    LazyNormal { NormalFloat, blend = 10 }
 
     -- }}}
 
