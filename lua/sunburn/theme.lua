@@ -11,8 +11,8 @@ local theme = Colorscheme.define('sunburn', function()
 
     Normal { bg = palette.bg_0, fg = palette.fg_0 }
     Comment { fg = palette.dim_0 }
-    NormalFloat { bg = palette.bg_0 }                 -- Normal text in floating windows.
-    FloatBorder { bg = palette.bg_0 }                 -- Border of floating windows
+    NormalFloat { bg = palette.bg_1 }                 -- Normal text in floating windows.
+    FloatBorder { bg = palette.bg_1 }                 -- Border of floating windows
     Conceal { fg = palette.fg_1, bg = palette.dim_0 } -- placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor { Reverse }                                -- character under the cursor
     -- lCursor            { } -- the character under the cursor when |language-mapping| is used (see 'guicursor')
@@ -111,9 +111,11 @@ local theme = Colorscheme.define('sunburn', function()
     -- SpellRare          { } -- Word that is recognized by the spellchecker as one that is hardly ever used.  |spell| Combined with the highlighting used otherwise.
     -- StatusLine         { } -- status line of current window
     -- StatusLineNC       { } -- status lines of not-current windows Note: if this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    -- TabLine            { } -- tab pages line, not active tab page label
-    -- TabLineFill        { } -- tab pages line, where there are no labels
-    -- TabLineSel         { } -- tab pages line, active tab page label
+    TabLine { bg = palette.bg_1 }                                   -- tab pages line, not active tab page label
+    TabLineFill { bg = TabLine.bg }                                 -- tab pages line, where there are no labels
+    TabLineSel { fg = TabLine.fg, bg = palette.bg_2, Bold }         -- tab pages line, active tab page label
+    -- WinBar             {  } -- window bar of the current window
+    -- WinBarNC           {  } -- window bars of not-current windows
     Title { fg = palette.br_violet }   -- titles for output from ":set all", ":autocmd" etc.
     Visual { bg = palette.bg_2 }       -- Visual mode selection
     -- VisualNOS          { } -- Visual mode selection when vim is "Not Owning the Selection".
