@@ -160,11 +160,11 @@ local theme = Colorscheme.define('sunburn', function()
     -- DiagnosticSignInfo { }
     -- DiagnosticSignOk { }
     -- DiagnosticSignWarn { }
-    -- DiagnosticUnderlineError { }
-    -- DiagnosticUnderlineHint { }
-    -- DiagnosticUnderlineInfo { }
-    -- DiagnosticUnderlineOk { }
-    -- DiagnosticUnderlineWarn { }
+    DiagnosticUnderlineError { Underline, sp = DiagnosticError.fg }
+    DiagnosticUnderlineHint { Underline, sp = DiagnosticHint.fg }
+    DiagnosticUnderlineInfo { Underline, sp = DiagnosticInfo.fg }
+    DiagnosticUnderlineOk { Underline, sp = DiagnosticOk.fg }
+    DiagnosticUnderlineWarn { Underline, sp = DiagnosticWarn.fg }
     -- DiagnosticVirtualTextError { }
     -- DiagnosticVirtualTextHint { }
     -- DiagnosticVirtualTextInfo { }
