@@ -482,6 +482,25 @@ local theme = Colorscheme.define('sunburn', function()
     -- }}}
 
     -- }}}
+    ---- lualine-integration -------------------- {{{
+
+    LuaLineNormalA { fg = palette.bg_0, bg = palette.green }
+    LuaLineNormalB { fg = palette.fg_0, bg = palette.bg_2 }
+    LuaLineNormalC { fg = palette.fg_0, bg = palette.bg_1 }
+
+    LuaLineInsertA { fg = palette.bg_0, bg = palette.blue }
+
+    LuaLineVisualA { fg = palette.bg_0, bg = palette.violet }
+
+    LuaLineReplaceA { fg = palette.bg_0, bg = palette.red }
+
+    LuaLineCommandA { fg = palette.bg_0, bg = palette.yellow }
+
+    LuaLineInactiveA { fg = palette.fg_1, bg = palette.bg_1 }
+    LuaLineInactiveB { fg = palette.bg_2, bg = palette.dim_0 }
+    LuaLineInactiveC { fg = palette.bg_2, bg = palette.bg_1 }
+
+    -- }}}
 end)
 
 return theme
