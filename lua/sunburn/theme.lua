@@ -339,6 +339,55 @@ local theme = Colorscheme.define('sunburn', function()
     CmpItemMenu { Type }
 
     -- }}}
+    --- saghen.blink.cmp {{{
+
+    -- BlinkCmpMenu { }
+    -- BlinkCmpMenuBorder { }
+    -- BlinkCmpMenuSelection { }
+    -- BlinkCmpScrollBarThumb { }
+    -- BlinkCmpScrollBarGutter { }
+    -- BlinkCmpLabel { }
+    BlinkCmpLabelDeprecated { Strikethrough }
+    BlinkCmpLabelMatch { Identifier }
+    -- BlinkCmpLabelDetail { }
+    -- BlinkCmpLabelDescription { }
+    -- BlinkCmpKind { }
+    BlinkCmpKindClass { Type }
+    BlinkCmpKindConstant { Constant }
+    BlinkCmpKindConstructor { Type }
+    -- BlinkCmpKindDefault { }
+    BlinkCmpKindEnum { Special }
+    BlinkCmpKindEnumMember { BlinkCmpKindEnum }
+    -- BlinkCmpKindEvent { }
+    -- BlinkCmpKindField { }
+    BlinkCmpKindFile { PreProc }
+    BlinkCmpKindFolder { Directory }
+    BlinkCmpKindMethod { _ '@keyword.function' }
+    BlinkCmpKindFunction { BlinkCmpKindMethod }
+    BlinkCmpKindInterface { BlinkCmpKindVariable }
+    BlinkCmpKindKeyword { Keyword }
+    BlinkCmpKindModule { PreProc }
+    BlinkCmpKindOperator { Operator }
+    BlinkCmpKindProperty { Identifier }
+    -- BlinkCmpKindReference { }
+    BlinkCmpKindSnippet { String }
+    BlinkCmpKindStruct { Type }
+    BlinkCmpKindText { fg = Normal.fg }
+    -- BlinkCmpKindTypeParameter { }
+    BlinkCmpKindUnit { Special }
+    -- BlinkCmpKindValue { }
+    BlinkCmpKindVariable { Identifier }
+    -- BlinkCmpSource { }
+    -- BlinkCmpGhostText { }
+    -- BlinkCmpDoc { }
+    -- BlinkCmpDocBorder { }
+    -- BlinkCmpDocSeparator { }
+    -- BlinkCmpDocCursorLine { }
+    -- BlinkCmpSignatureHelp { }
+    -- BlinkCmpSignatureHelpBorder { }
+    -- BlinkCmpSignatureHelpActiveParameter { }
+
+    -- }}}
     --- lukas-reineke/indent-blankline.nvim {{{
 
     -- IblIndent { }
