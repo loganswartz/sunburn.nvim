@@ -27,13 +27,14 @@ local theme = Colorscheme.define('sunburn', function()
     -- Git
     diffFile { fg = palette.fg_1, Bold }
     diffIndexLine { Identifier, Italic }
-    DiffAdd { fg = palette.green }
+    DiffAdd { bg = palette.green_dim_3 }
     diffAdded { DiffAdd }
-    DiffChange { fg = palette.yellow }
+    DiffChange { bg = palette.yellow_dim_3 }
     diffChanged { DiffChange }
-    diffRemoved { fg = palette.red }
+    diffRemoved { bg = palette.red_dim_3 }
     DiffDelete { diffRemoved }
-    DiffText { fg = DiffDelete.fg, Reverse }
+    DiffText { bg = palette.yellow_dim_2 }
+    DiffTextAdd { bg = palette.green_dim_2 }
 
     diffLine { Constant }
     diffSubname { fg = Normal.fg }
@@ -290,13 +291,13 @@ local theme = Colorscheme.define('sunburn', function()
     _ "@comment.error" { Todo, fg = DiagnosticError.fg }
 
     _ "@diff.plus" { DiffAdd }
-    _ "@diff.plus.gutter" { _ "@diff.plus" }
+    _ "@diff.plus.gutter" { _ "@diff.plus", fg = palette.green }
     _ "@diff.minus" { DiffDelete }
-    _ "@diff.minus.gutter" { _ "@diff.minus" }
+    _ "@diff.minus.gutter" { _ "@diff.minus", fg = palette.red }
     _ "@diff.delta" { DiffChange }
     -- _ "@diff.delta.moved" { }
     -- _ "@diff.delta.conflict" { }
-    _ "@diff.delta.gutter" { _ "@diff.delta" }
+    _ "@diff.delta.gutter" { _ "@diff.delta", fg = palette.yellow }
 
     _ "@tag" { fg = palette.red }
     _ "@tag.attribute" { Identifier }
@@ -306,7 +307,7 @@ local theme = Colorscheme.define('sunburn', function()
     ---- 3rd Party Plugins ---------------------- {{{
     --- hrsh7th/nvim-cmp {{{
 
-    CmpItemAbbrDeprecated { strikethrough }
+    CmpItemAbbrDeprecated { Strikethrough }
     -- CmpItemAbbrDeprecatedDefault { }
     CmpItemAbbrMatch { Identifier }
     CmpItemAbbrMatchFuzzy { CmpItemAbbrMatch }
@@ -550,6 +551,13 @@ local theme = Colorscheme.define('sunburn', function()
     LuaLineInactiveC { fg = palette.bg_2, bg = palette.bg_1 }
 
     -- }}}
-end)
+end, {
+    gui_groups = {
+        enable = true,
+    },
+    autotransparency = {
+        enable = true,
+    },
+})
 
 return theme

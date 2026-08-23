@@ -1,4 +1,5 @@
-local oklch = require("polychrome").oklch
+local oklch = require("polychrome.color.oklch")
+local Palette = require("polychrome.palette")
 
 -- The palette was chosen in 2 steps:
 --
@@ -70,7 +71,7 @@ local function generate(size, bright)
     local hues = get_intervals(start, size)
     local variant = bright and 'bright' or 'base'
 
-    local palette = {
+    local palette = Palette.new({
         bg_0  = oklch(0.21, 0, 0),
         bg_1  = oklch(0.28, 0, 0),
         bg_2  = oklch(0.35, 0, 0),
@@ -78,7 +79,7 @@ local function generate(size, bright)
         -- subjective adjustment for white
         fg_0  = oklch(LC[variant].LIGHTNESS + (LC[variant].LIGHTNESS_OFFSET / 3), 0, 0),
         fg_1  = oklch(0.90, 0, 0),
-    }
+    })
 
     local NAME_LOOKUP = {
         'red',
@@ -96,8 +97,12 @@ local function generate(size, bright)
     for idx, hue in ipairs(hues) do
         local name = NAME_LOOKUP[idx]
         palette[name] = oklch(LC[variant].LIGHTNESS, LC[variant].CHROMA, hue)
-        palette['br_' .. name] = oklch(LC[variant].LIGHTNESS + LC[variant].LIGHTNESS_OFFSET, LC[variant].CHROMA,
-            hue)
+        palette['br_' .. name] = palette[name] + oklch(LC[variant].LIGHTNESS_OFFSET, 0, 0)
+
+        for i = 1, 3 do
+            palette[name .. '_bright_' .. i] = palette[name] + oklch(i * LC[variant].LIGHTNESS_OFFSET, 0, 0)
+            palette[name .. '_dim_' .. i] = palette[name] - oklch(i * LC[variant].LIGHTNESS_OFFSET, 0, 0)
+        end
     end
 
     return palette
